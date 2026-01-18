@@ -102,8 +102,8 @@ if ($reposJson) {
             'tags' => array_filter(array_map('trim', explode(',', $metadata['tags'] ?? ''))),
             'repo' => $repo['html_url'],
             'download' => $downloadUrl,
-            // Pointing to EXTERNAL GitHub Repo for readme, as we don't host docs here
-            'readme' => $repo['html_url'], 
+            // Point to RAW README for client-side fetching
+            'readme' => "https://raw.githubusercontent.com/$orgName/{$repo['name']}/{$ref}/README.md",
             'updated_at' => $repo['updated_at']
         ];
         echo "  + Added: " . $metadata['plugin name'] . "\n";
