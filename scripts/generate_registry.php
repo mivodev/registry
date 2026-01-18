@@ -124,6 +124,8 @@ if ($mivoReleasesJson) {
     $releasesRaw = json_decode($mivoReleasesJson, true);
     $archive = [];
 
+    $latestFound = false;
+
     foreach ($releasesRaw as $release) {
         if ($release['draft']) continue;
 
@@ -138,13 +140,20 @@ if ($mivoReleasesJson) {
             }
         }
 
+        $isLatest = false;
+        if (!$latestFound && !$release['prerelease']) {
+            $isLatest = true;
+            $latestFound = true;
+        }
+
         $archive[] = [
             'version' => $release['tag_name'],
             'date' => date('Y-m-d', strtotime($release['published_at'])),
             'size' => $size,
             'download' => $assetUrl,
             'notes' => $release['html_url'],
-            'prerelease' => $release['prerelease']
+            'prerelease' => $release['prerelease'],
+            'latest' => $isLatest
         ];
     }
 
