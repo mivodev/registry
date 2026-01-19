@@ -32,7 +32,7 @@ jobs:
       - name: Generate Registry & Releases
         run: php scripts/generate_registry.php
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       
       # Upload the 'public' folder as an artifact for Pages
       - name: Upload artifact
