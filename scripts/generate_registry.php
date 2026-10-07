@@ -19,17 +19,18 @@ $releasesFile = $outputDir . '/releases.json';
 $githubToken = getenv('GITHUB_TOKEN');
 
 function fetchUrl($url, $token = null) {
-    if (!$token) {
-        // Fallback for local testing (might rate limit)
-        // echo "Warning: No GITHUB_TOKEN provided.\n";
+    $headers = [
+        'User-Agent: Mivo-Registry-Bot'
+    ];
+
+    if (!empty($token)) {
+        $headers[] = "Authorization: Bearer " . trim($token);
     }
+
     $opts = [
         'http' => [
             'method' => 'GET',
-            'header' => [
-                'User-Agent: Mivo-Registry-Bot',
-                $token ? "Authorization: token $token" : ''
-            ]
+            'header' => implode("\r\n", $headers)
         ]
     ];
     $context = stream_context_create($opts);
@@ -113,6 +114,7 @@ if ($reposJson) {
     echo "Saved " . count($plugins) . " plugins to plugins.json\n";
 } else {
     echo "Error: Failed to fetch repositories.\n";
+    exit(1);
 }
 
 // --- PART 2: RELEASES ---
