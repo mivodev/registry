@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler pages dev public"
+    "build": "pnpm --filter @mivo/registry-core build",
+    "dev": "pnpm build && wrangler pages dev public"
   },
   "dependencies": {
     "@mivo/registry-core": "workspace:*"

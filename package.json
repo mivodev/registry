@@ -4,9 +4,13 @@
   "private": true,
   "description": "",
   "scripts": {
+    "build": "pnpm --filter @mivo/cloudflare-pages build",
+    "build:core": "pnpm --filter @mivo/registry-core build",
+    "build:github-pages": "pnpm --filter @mivo/github-pages build",
+    "build:cloudflare": "pnpm --filter @mivo/cloudflare-pages build",
     "generate": "pnpm --filter @mivo/github-pages generate",
     "dev:cloudflare": "pnpm --filter @mivo/cloudflare-pages dev",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "pnpm build:core && tsc --noEmit",
     "test": "tsx --test packages/registry-core/src/index.test.ts"
   },
   "devEngines": {

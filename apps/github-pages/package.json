@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate": "tsx generate.ts"
+    "build": "pnpm --filter @mivo/registry-core build && tsx generate.ts",
+    "generate": "pnpm build"
   },
   "dependencies": {
     "@mivo/registry-core": "workspace:*",

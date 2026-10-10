@@ -26,6 +26,8 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 12.10.1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,16 +38,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate Registry & Releases
+      - name: Build and generate Registry & Releases
         run: pnpm generate
         env:
           GH_PAT: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
-      
-      # Upload the 'public' folder as an artifact for Pages
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'apps/github-pages/public'
+          path: apps/github-pages/public
 
   deploy:
     environment:
