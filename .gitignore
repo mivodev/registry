@@ -1,4 +1,22 @@
-public/
+**/public/*
+!**/public/.gitkeep
 
-.env
+.env*
 !.env.example
+
+node_modules/
+.wrangler/
+**/_worker.bundle
+.dev.vars*
+!.dev.vars.example
+wrangler.local.jsonc
+
+dist/
+build/
+coverage/
+.turbo/
+.cache/
+.DS_Store
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*

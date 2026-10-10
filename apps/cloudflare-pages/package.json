@@ -1,0 +1,15 @@
+{
+  "name": "@mivo/cloudflare-pages",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public"
+  },
+  "dependencies": {
+    "@mivo/registry-core": "workspace:*"
+  },
+  "devDependencies": {
+    "wrangler": "^4.42.0"
+  }
+}

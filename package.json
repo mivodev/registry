@@ -1,0 +1,29 @@
+{
+  "name": "registry",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "generate": "pnpm --filter @mivo/github-pages generate",
+    "dev:cloudflare": "pnpm --filter @mivo/cloudflare-pages dev",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test packages/registry-core/src/index.test.ts"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.10.1",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.10.1",
+  "type": "module",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261010.1",
+    "@types/node": "^24.7.2",
+    "dotenv": "^17.2.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.42.0"
+  }
+}

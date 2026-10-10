@@ -1,0 +1,13 @@
+{
+  "name": "@mivo/github-pages",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "tsx generate.ts"
+  },
+  "dependencies": {
+    "@mivo/registry-core": "workspace:*",
+    "dotenv": "^17.2.3"
+  }
+}
