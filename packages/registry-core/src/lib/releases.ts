@@ -1,5 +1,5 @@
 import { getJson, githubUrls } from "./github-client.ts";
-import type { MivoRelease, RegistryRelease } from "./types.ts";
+import type { MivoRelease, RegistryRelease } from "../types.ts";
 
 export async function generateReleases(token?: string): Promise<RegistryRelease[]> {
   const releases =

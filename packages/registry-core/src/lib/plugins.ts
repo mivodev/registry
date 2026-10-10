@@ -1,5 +1,5 @@
 import { getJson, getText, githubUrls } from "./github-client.ts";
-import type { GitHubRelease, GitHubRepository, Plugin } from "./types.ts";
+import type { GitHubRelease, GitHubRepository, Plugin } from "../types.ts";
 
 function parsePluginMetadata(content: string): Record<string, string> {
   const metadata: Record<string, string> = {};

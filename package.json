@@ -11,7 +11,7 @@
     "generate": "pnpm --filter @mivo/github-pages generate",
     "dev:cloudflare": "pnpm --filter @mivo/cloudflare-pages dev",
     "typecheck": "pnpm build:core && tsc --noEmit",
-    "test": "tsx --test packages/registry-core/src/index.test.ts"
+    "test": "tsx --test packages/registry-core/tests/index.test.ts packages/registry-core/tests/cors.test.ts"
   },
   "devEngines": {
     "packageManager": {

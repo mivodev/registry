@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { afterEach, it } from "node:test";
-import { generatePlugins, generateReleases } from "./index.ts";
+import { generatePlugins, generateReleases } from "../src/index.ts";
 
 const originalFetch = globalThis.fetch;
 const originalWarn = console.warn;

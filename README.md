@@ -39,6 +39,18 @@ Set `GH_PAT` in `.env` for higher GitHub API rate limits. The token should have 
 
 Use `pnpm build:core` to build the shared package, `pnpm build:github-pages` to generate the static registry, or `pnpm build:cloudflare` to build the shared package for the Cloudflare Pages Functions. `pnpm build` is an alias for the Cloudflare build.
 
+## CORS configuration
+
+The CORS middleware is exported by `@mivo/registry-core` and used by the Cloudflare Pages Functions for `plugins.json` and `releases.json`. Configure these variables in **Cloudflare Dashboard → Workers & Pages → your Pages project → Settings → Variables and Secrets** for each environment:
+
+- `CORS_ALLOWED_ORIGINS`: comma-separated exact origins, for example `https://www.mivo.qd.je`. Use `*` only for a public, non-credentialed API.
+- `CORS_ALLOW_METHODS`: comma-separated methods allowed by preflight; defaults to `GET, OPTIONS`.
+- `CORS_ALLOW_HEADERS`: comma-separated request headers allowed by preflight; defaults to `Content-Type, Authorization`.
+- `CORS_ALLOW_CREDENTIALS`: `true` or `false`; defaults to `false`. Credentials cannot be used with wildcard origins.
+- `CORS_MAX_AGE`: preflight cache lifetime in seconds; defaults to `86400`.
+
+For local Pages development, copy `apps/cloudflare-pages/.dev.vars.example` to `apps/cloudflare-pages/.dev.vars` and set the desired origins there. `.dev.vars` is ignored by Git. These are server-side Cloudflare variables, not `VITE_CORS_*` frontend variables: frontend build variables cannot add `Access-Control-Allow-*` response headers. The API server must return those headers for the browser to permit cross-origin requests.
+
 ## Cloudflare Pages SSR
 
 Deploy the SSR app through the **Cloudflare Dashboard using Git integration**. Do not deploy this app with the Wrangler CLI.
